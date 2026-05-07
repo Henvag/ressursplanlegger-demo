@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ressursplanlegger</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Hovednavigasjon">
+        <div class="sidebar-top">
+          <button class="collapse-button" aria-label="Skjul meny">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 18 9 12l6-6" />
+            </svg>
+          </button>
+          <a class="brand" href="#">
+            <span class="brand-mark">wz</span>
+            <span>ressurs</span>
+          </a>
+        </div>
+
+        <nav class="main-nav">
+          <a class="nav-item active" href="#" data-page-link="dashboardPage">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 13h8V3H3v10Zm10 8h8V3h-8v18ZM3 21h8v-6H3v6Z" />
+            </svg>
+            Dashboard
+          </a>
+          <a class="nav-item" href="#" data-page-link="plannerPage">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+              <path d="M8 4v16M16 4v16" />
+            </svg>
+            Ressursplanlegger
+          </a>
+          <a class="nav-item" href="#">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3 4 7v10l8 4 8-4V7l-8-4Z" />
+              <path d="m4 7 8 4 8-4M12 11v10" />
+            </svg>
+            Kompetansekart
+          </a>
+          <a class="nav-item" href="#">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h7M4 12h16M4 18h10" />
+              <path d="M15 4h5v5h-5z" />
+            </svg>
+            Prosjekter
+          </a>
+        </nav>
+
+        <p class="nav-label">Admin</p>
+        <nav class="main-nav secondary">
+          <a class="nav-item" href="#">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16 21v-2a4 4 0 0 0-8 0v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            Ansatte
+          </a>
+          <a class="nav-item" href="#">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 17h14l-2-8H7l-2 8Z" />
+              <path d="M7 17v2M17 17v2M9 9V5h6v4" />
+            </svg>
+            Maskiner
+          </a>
+          <a class="nav-item" href="#">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 20h16M6 20V8l6-4 6 4v12" />
+              <path d="M10 20v-6h4v6" />
+            </svg>
+            Stillinger
+          </a>
+          <a class="nav-item" href="#">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3 4 7v10l8 4 8-4V7l-8-4Z" />
+              <path d="M9 12l2 2 4-5" />
+            </svg>
+            Kurs og kompetanse
+          </a>
+          <a class="nav-item" href="#">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 8v4l3 2" />
+              <circle cx="12" cy="12" r="9" />
+            </svg>
+            Turnusplaner
+          </a>
+          <a class="nav-item" href="#">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            Min Profil
+          </a>
+        </nav>
+
+        <div class="profile-card">
+          <div class="avatar">HR</div>
+          <div>
+            <strong>Henrik Rolland V&aring;gseth</strong>
+            <span>henvagrolland@gmail.com</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <section class="page-view active" id="dashboardPage">
+        <header class="topbar">
+          <div>
+            <p class="section-kicker">Dashboard</p>
+            <h1>God morgen, Martin</h1>
+            <span class="date-label">Onsdag 8. april 2026</span>
+          </div>
+          <div class="topbar-actions">
+            <button class="help-button" aria-label="Hjelp og veiledning">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 17h.01" />
+                <path d="M9.1 9a3 3 0 1 1 5.8 1c-.6 1.4-2.2 1.6-2.7 2.8-.1.3-.2.7-.2 1.2" />
+                <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <section class="metric-grid" aria-label="Nøkkeltall">
+          <article class="metric-card">
+            <div>
+              <strong>7</strong>
+              <span>Aktive prosjekter</span>
+            </div>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 11 12 14 22 4" />
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+            </svg>
+          </article>
+          <article class="metric-card">
+            <div>
+              <strong>38 / 47</strong>
+              <span>Ansatte i felt i dag</span>
+            </div>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16 21v-2a4 4 0 0 0-8 0v2" />
+              <circle cx="12" cy="7" r="4" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8" />
+            </svg>
+          </article>
+          <article class="metric-card">
+            <div>
+              <strong>14 / 18</strong>
+              <span>Maskiner i drift</span>
+            </div>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 17h14l-2-8H7l-2 8Z" />
+              <path d="M7 17v2M17 17v2M9 9V5h6v4" />
+            </svg>
+          </article>
+          <article class="metric-card warning">
+            <div>
+              <strong>4</strong>
+              <span>Krever oppmerksomhet</span>
+              <button class="text-button">Se detaljer</button>
+            </div>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
+              <path d="M12 9v4M12 17h.01" />
+            </svg>
+          </article>
+        </section>
+
+        <section class="workspace-grid">
+          <article class="panel allocation-panel">
+            <div class="panel-header">
+              <div>
+                <h2>Ressursallokering</h2>
+                <span>Uke 15, kapasitet per dag</span>
+              </div>
+            <button class="filter-select" aria-label="Filtrer ressursallokering på stillinger">
+              Stillinger
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            </div>
+
+            <div class="chart-area" aria-label="Ressursallokering per dag">
+              <div class="y-axis">
+                <span>20</span>
+                <span>15</span>
+                <span>10</span>
+                <span>5</span>
+                <span>0</span>
+              </div>
+              <div class="bar-grid">
+                <div class="capacity-line"></div>
+                <div class="day-bar">
+                  <span class="bar booked"></span>
+                  <span class="bar training"></span>
+                  <span class="bar absence"></span>
+                  <span class="bar vacation"></span>
+                  <strong>09/04</strong>
+                </div>
+                <div class="day-bar">
+                  <span class="bar booked"></span>
+                  <span class="bar training"></span>
+                  <span class="bar absence"></span>
+                  <span class="bar vacation"></span>
+                  <strong>10/04</strong>
+                </div>
+                <div class="day-bar">
+                  <span class="bar booked"></span>
+                  <span class="bar training"></span>
+                  <span class="bar absence"></span>
+                  <span class="bar vacation"></span>
+                  <strong>11/04</strong>
+                </div>
+                <div class="day-bar">
+                  <span class="bar booked"></span>
+                  <span class="bar training"></span>
+                  <span class="bar absence"></span>
+                  <span class="bar vacation"></span>
+                  <strong>12/04</strong>
+                </div>
+                <div class="day-bar over">
+                  <span class="bar booked"></span>
+                  <span class="bar training"></span>
+                  <span class="bar absence"></span>
+                  <span class="bar vacation"></span>
+                  <strong>13/04</strong>
+                </div>
+                <div class="day-bar">
+                  <span class="bar booked"></span>
+                  <span class="bar training"></span>
+                  <span class="bar absence"></span>
+                  <span class="bar vacation"></span>
+                  <strong>14/04</strong>
+                </div>
+                <div class="day-bar">
+                  <span class="bar booked"></span>
+                  <span class="bar training"></span>
+                  <span class="bar absence"></span>
+                  <span class="bar vacation"></span>
+                  <strong>15/04</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="legend">
+              <span><i class="legend-dot vacation"></i>Ferie</span>
+              <span><i class="legend-dot absence"></i>Sykefravær</span>
+              <span><i class="legend-dot training"></i>Kurs/Trening</span>
+              <span><i class="legend-dot booked"></i>Bestilt</span>
+            </div>
+          </article>
+
+        </section>
+        </section>
+
+        <section class="page-view planner-page" id="plannerPage">
+          <header class="planner-topbar">
+            <div class="planner-title">
+              <h1>Ressursplanlegger</h1>
+            </div>
+            <div class="planner-filters" aria-label="Filtre for ressursplanlegger">
+              <label class="search-field">
+                <span class="sr-only">S&oslash;k</span>
+                <input type="search" placeholder="S&oslash;k..." />
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m21 21-4.3-4.3" />
+                </svg>
+              </label>
+              <button class="planner-select">
+                Prosjekt
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+              <button class="planner-select">
+                Stillinger
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+              <button class="planner-round active" aria-label="Vis ansatte">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M16 21v-2a4 4 0 0 0-8 0v2" />
+                  <circle cx="12" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.9" />
+                </svg>
+              </button>
+              <button class="planner-round" aria-label="Vis maskiner">
+                <svg class="truck-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 7h11v8H3z" />
+                  <path d="M14 10h4l3 3v2h-7z" />
+                  <circle cx="7" cy="17" r="2" />
+                  <circle cx="18" cy="17" r="2" />
+                </svg>
+              </button>
+            </div>
+          </header>
+
+          <section class="planner-board" aria-label="Ressursplanlegger">
+            <div class="planner-controls">
+              <button class="month-button">Velg m&aring;ned</button>
+              <button class="plain-icon" aria-label="Forrige periode">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
+              </button>
+              <button class="plain-icon active" aria-label="Åpne kalender">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <path d="M16 2v4M8 2v4M3 10h18" />
+                </svg>
+              </button>
+              <button class="plain-icon" aria-label="Neste periode">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+
+            <div class="resource-planner">
+              <div class="resource-column-spacer"></div>
+              <div class="week-header" id="plannerWeekHeader"></div>
+              <div class="resource-column" id="plannerResourceColumn"></div>
+              <div class="calendar-grid" id="plannerCalendarGrid"></div>
+            </div>
+
+            <footer class="planner-footer">
+              <div class="week-count">
+                <span>Antall uker i visning:</span>
+                <button data-week-count="1">1</button>
+                <button data-week-count="2">2</button>
+                <button class="active" data-week-count="3">3</button>
+                <button data-week-count="4">4</button>
+                <button data-week-count="5">5</button>
+                <button data-week-count="6">6</button>
+                <button data-week-count="7">7</button>
+                <button data-week-count="8">8</button>
+              </div>
+              <button class="color-key">
+                <svg class="palette-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3C6.5 3 2 6.9 2 11.8 2 16 5.4 20 10.1 20h1.6c1.1 0 1.8-.9 1.5-1.9-.2-.8.4-1.6 1.3-1.6H16c3.4 0 6-2.7 6-6.1C22 6.4 17.5 3 12 3Z" />
+                  <circle cx="7.5" cy="11" r="1.4" />
+                  <circle cx="10.2" cy="7.9" r="1.4" />
+                  <circle cx="14.1" cy="7.9" r="1.4" />
+                  <circle cx="16.8" cy="11" r="1.4" />
+                </svg>
+                Fargeforklaring
+              </button>
+            </footer>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div class="attention-drawer" id="attentionDrawer" aria-hidden="true">
+      <div class="drawer-backdrop" data-close-drawer></div>
+      <aside class="drawer-panel" aria-label="Krever oppmerksomhet">
+        <header class="drawer-header">
+          <div>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
+              <path d="M12 9v4M12 17h.01" />
+            </svg>
+            <h2>Krever oppmerksomhet</h2>
+          </div>
+          <button class="drawer-close" aria-label="Lukk varselpanel" data-close-drawer>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </header>
+
+        <div class="drawer-alert">4 advarsler krever handling</div>
+
+        <div class="attention-list">
+          <article class="attention-card">
+            <h3>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M16 21v-2a4 4 0 0 0-8 0v2" />
+                <circle cx="12" cy="7" r="4" />
+                <path d="M20 8v6M23 11h-6" />
+              </svg>
+              2 ansatte uten allokering neste uke
+            </h3>
+            <p>Bjørn Erik Nilsen og Janne Eriksen har ingen allokeringer fra uke 16.</p>
+            <button>Løs <span aria-hidden="true">›</span></button>
+          </article>
+
+          <article class="attention-card amber">
+            <h3>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 4h16v12H5.2L4 17.2V4Z" />
+                <path d="M8 8h8M8 12h5" />
+              </svg>
+              2 sertifikater utløper snart
+            </h3>
+            <p>
+              Stig Johannesen: Maskinførerkort utløper 22.04.2026.
+              Per Andersen: HMS-sertifikat utløper 30.04.2026.
+            </p>
+            <button>Løs <span aria-hidden="true">›</span></button>
+          </article>
+
+          <article class="attention-card">
+            <h3>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 17h14l-2-8H7l-2 8Z" />
+                <path d="M7 17v2M17 17v2M9 9V5h6v4" />
+              </svg>
+              Maskin CAT 320 under reparasjon
+            </h3>
+            <p>
+              CAT 320 har vært under reparasjon i 5 dager. Prosjekt Bjørnefjorden
+              mangler gravemaskin fra 10.04.2026.
+            </p>
+            <button>Løs <span aria-hidden="true">›</span></button>
+          </article>
+
+          <article class="attention-card amber">
+            <h3>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 2v4M16 2v4M3 10h18" />
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+              </svg>
+              Prosjekt Lofoten: Underbemanning
+            </h3>
+            <p>
+              Prosjekt Lofoten trenger 2 ekstra sveisere innen 21.04.2026.
+              Ingen tilgjengelige kandidater med riktig kompetanse.
+            </p>
+            <button>Løs <span aria-hidden="true">›</span></button>
+          </article>
+        </div>
+      </aside>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
