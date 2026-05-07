@@ -7,6 +7,7 @@ En enkel **ressursplanlegger-demo** med dashboard og planleggingsvisning.
 - **Dashboard**
 - **Ressursplanlegger**
 - **Kompetansekart**
+- **Prosjektstyring**
 
 ## Inspirasjon / grunnlag
 
