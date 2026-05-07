@@ -34,14 +34,14 @@
             </svg>
             Ressursplanlegger
           </a>
-          <a class="nav-item" href="#">
+          <a class="nav-item" href="#" data-page-link="skillsPage">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 3 4 7v10l8 4 8-4V7l-8-4Z" />
               <path d="m4 7 8 4 8-4M12 11v10" />
             </svg>
             Kompetansekart
           </a>
-          <a class="nav-item" href="#">
+          <a class="nav-item" href="#" data-page-link="projectsPage">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M4 6h7M4 12h16M4 18h10" />
               <path d="M15 4h5v5h-5z" />
@@ -354,6 +354,87 @@
             </footer>
           </section>
         </section>
+
+        <section class="page-view skills-page" id="skillsPage">
+          <header class="skills-topbar">
+            <div class="skills-topbar-title">
+              <h1>Kompetansekart</h1>
+            </div>
+
+            <div class="skills-topbar-actions" aria-label="Søk og filtre for kompetansekart">
+              <label class="skills-search">
+                <span class="sr-only">Søk</span>
+                <input id="skillsSearch" type="search" placeholder="Søk..." />
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m21 21-4.3-4.3" />
+                </svg>
+              </label>
+
+              <button class="skills-filter" type="button">
+                Stillinger
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+              <button class="skills-filter" type="button">
+                Sertifikat type
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+            </div>
+          </header>
+
+          <div class="skills-legend" aria-label="Forklaring av statuser">
+            <span><i class="skills-dot ok"></i>Gyldig</span>
+            <span><i class="skills-dot warn"></i>Utløpt</span>
+            <span><i class="skills-dot muted"></i>Mangler / ikke relevant</span>
+          </div>
+
+          <section class="skills-matrix" aria-label="Kompetansekart tabell">
+            <div class="skills-table" id="skillsTable">
+              <div class="skills-table-corner">Ansatte</div>
+              <div class="skills-table-header" id="skillsHeaderRow"></div>
+              <div class="skills-table-rows" id="skillsRowHeader"></div>
+              <div class="skills-table-grid" id="skillsGrid"></div>
+            </div>
+          </section>
+        </section>
+
+        <section class="page-view projects-page" id="projectsPage">
+          <header class="projects-topbar">
+            <div class="projects-topbar-title">
+              <h1>Prosjekter</h1>
+            </div>
+
+            <div class="projects-topbar-actions" aria-label="Søk og handlinger for prosjekter">
+              <button class="projects-primary" type="button">
+                <span aria-hidden="true">+</span>
+                Nytt prosjekt
+              </button>
+            </div>
+          </header>
+
+          <div class="projects-filters" aria-label="Prosjektfiltre">
+            <button class="chip active" type="button" data-project-filter="all">Alle</button>
+            <button class="chip" type="button" data-project-filter="not_started">Ikke påbegynt</button>
+            <button class="chip" type="button" data-project-filter="ongoing">Pågående</button>
+            <button class="chip" type="button" data-project-filter="critical">Kritisk</button>
+            <button class="chip" type="button" data-project-filter="completed">Fullført</button>
+
+            <label class="projects-search">
+              <span class="sr-only">Søk prosjekt</span>
+              <input id="projectsSearch" type="search" placeholder="Søk prosjekt..." />
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+            </label>
+          </div>
+
+          <section class="projects-grid" aria-label="Prosjektliste" id="projectsGrid"></section>
+        </section>
       </main>
     </div>
 
@@ -437,6 +518,40 @@
           </article>
         </div>
       </aside>
+    </div>
+
+    <div class="skills-drawer" id="skillsDrawer" aria-hidden="true">
+      <div class="drawer-backdrop" data-close-skills-drawer></div>
+      <aside class="drawer-panel" aria-label="Kompetanseoversikt">
+        <header class="drawer-header">
+          <div>
+            <h2>Kompetanseoversikt</h2>
+          </div>
+          <button class="drawer-close" aria-label="Lukk kompetanseoversikt" data-close-skills-drawer>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </header>
+
+        <div class="skills-drawer-body" id="skillsDrawerBody"></div>
+      </aside>
+    </div>
+
+    <div class="project-detail" id="projectDetail" aria-hidden="true">
+      <div class="project-detail-panel" role="dialog" aria-modal="true" aria-label="Prosjektdetaljer">
+        <header class="project-detail-header">
+          <button class="project-detail-back" type="button" aria-label="Tilbake" data-close-project-detail>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+          <h2 class="project-detail-title" id="projectDetailTitle">Prosjektdetaljer</h2>
+          <span class="project-detail-status" id="projectDetailStatus"></span>
+        </header>
+
+        <div class="project-detail-content" id="projectDetailContent"></div>
+      </div>
     </div>
     <script src="./app.js"></script>
   </body>
