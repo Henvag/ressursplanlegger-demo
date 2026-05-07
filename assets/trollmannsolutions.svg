@@ -1,0 +1,14 @@
+<svg width="600" height="180" viewBox="0 0 600 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Wizard Hat -->
+  <path d="M95 125L125 45L155 125H95Z" fill="#7C5CFF"></path>
+  <circle cx="125" cy="38" r="8" fill="#A78BFA"></circle>
+
+  <!-- Text -->
+  <text x="190" y="88" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" fill="currentColor">
+    Trollmann
+  </text>
+
+  <text x="192" y="122" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="4" fill="currentColor" opacity="0.65">
+    SOLUTIONS
+  </text>
+</svg>

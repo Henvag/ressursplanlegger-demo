@@ -192,7 +192,11 @@ svg {
   text-decoration: none;
 }
 
-.brand-mark {
+.brand-logo {
+  display: block;
+  height: 62px;
+  width: auto;
+  max-width: 340px;
   color: #123f78;
 }
 
