@@ -163,15 +163,12 @@ svg {
 }
 
 .avatar {
-  display: grid;
-  place-items: center;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2a67a9, #0b3158);
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 800;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px #d6e2ef;
 }
 
 .profile-card strong,
