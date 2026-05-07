@@ -23,6 +23,7 @@ Utviklet ved hjelp av **Cursor** og **Codex**, hvor funksjonalitet og UI-interak
 - **HTML** (statisk layout i `index.html`)
 - **CSS** (styling i `styles.css`)
 - **JavaScript (vanilla)** (interaktivitet i `app.js`)
+- **Deployed med Docker**
 
 ## Kjør lokalt
 
