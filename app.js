@@ -9,6 +9,8 @@ const plannerCalendarGrid = document.querySelector("#plannerCalendarGrid");
 const weekCountButtons = document.querySelectorAll("[data-week-count]");
 const resourcePlanner = document.querySelector(".resource-planner");
 let visibleWeeks = 3;
+let allocationMenu = null;
+let activeAllocation = null;
 
 const dayLabels = Array.from({ length: 56 }, (_, index) => `${index + 6}.`);
 const weekLabels = Array.from({ length: 8 }, (_, index) => ({
@@ -97,6 +99,44 @@ const plannerRows = [
   },
 ];
 
+const allocationOptions = [
+  {
+    id: "project",
+    label: "Prosjekt tildeling",
+    shortLabel: "Prosjekt",
+    color: "green",
+    icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M19 8v6"/><path d="M22 11h-6"/></svg>`,
+  },
+  {
+    id: "vacation",
+    label: "Ferie",
+    shortLabel: "Ferie",
+    color: "yellow",
+    icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 0 1 16 0Z"/><path d="M12 10v9"/><path d="M12 19a2 2 0 0 0 4 0"/></svg>`,
+  },
+  {
+    id: "sick",
+    label: "Sykdom",
+    shortLabel: "Syk",
+    color: "peach",
+    icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 8.5 15.5 15.5"/><path d="M15.5 8.5 8.5 15.5"/><rect x="7" y="7" width="10" height="10" rx="2"/></svg>`,
+  },
+  {
+    id: "leave",
+    label: "Permisjon",
+    shortLabel: "Perm",
+    color: "purple",
+    icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-3-3.87"/><path d="M7 21v-2a4 4 0 0 1 3-3.87"/><circle cx="12" cy="8" r="3"/><path d="M2 21v-2a4 4 0 0 1 4-4"/><circle cx="6" cy="9" r="2"/><path d="M22 21v-2a4 4 0 0 0-4-4"/><circle cx="18" cy="9" r="2"/></svg>`,
+  },
+  {
+    id: "course",
+    label: "Kurs/Opplæring",
+    shortLabel: "Kurs",
+    color: "blue",
+    icon: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10"/><path d="M7 12h7"/><path d="M7 16h5"/><path d="M16 14h3"/></svg>`,
+  },
+];
+
 function showPage(pageId) {
   pageViews.forEach((page) => {
     page.classList.toggle("active", page.id === pageId);
@@ -114,6 +154,70 @@ pageLinks.forEach((link) => {
   });
 });
 
+function closeAllocationMenu({ keepAllocation = false } = {}) {
+  allocationMenu?.remove();
+  allocationMenu = null;
+
+  if (!keepAllocation) {
+    activeAllocation = null;
+    plannerResourceColumn?.querySelectorAll(".add-allocation").forEach((button) => button.classList.remove("active"));
+  }
+}
+
+function openAllocationMenu(anchorButton, rowIndex) {
+  closeAllocationMenu();
+  if (!anchorButton) return;
+
+  const rect = anchorButton.getBoundingClientRect();
+  const menu = document.createElement("div");
+  menu.className = "allocation-popover";
+  menu.setAttribute("role", "menu");
+  menu.innerHTML = `
+    <div class="allocation-popover-title">Velg type</div>
+    <div class="allocation-popover-list">
+      ${allocationOptions
+        .map(
+          (option) => `
+            <button class="allocation-option" type="button" role="menuitem" data-allocation-id="${option.id}">
+              <span class="allocation-icon" aria-hidden="true">${option.icon}</span>
+              <span class="allocation-label">${option.label}</span>
+            </button>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+
+  menu.style.left = `${Math.min(window.innerWidth - 12, Math.max(12, rect.left + rect.width / 2))}px`;
+  menu.style.top = `${Math.min(window.innerHeight - 12, Math.max(12, rect.bottom + 10))}px`;
+  menu.style.transform = "translateX(-50%)";
+  document.body.appendChild(menu);
+  allocationMenu = menu;
+
+  const handleDocumentClick = (event) => {
+    if (allocationMenu?.contains(event.target) || anchorButton.contains(event.target)) return;
+    closeAllocationMenu();
+    document.removeEventListener("click", handleDocumentClick, true);
+  };
+
+  document.addEventListener("click", handleDocumentClick, true);
+
+  menu.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-allocation-id]");
+    if (!button) return;
+
+    const option = allocationOptions.find((item) => item.id === button.dataset.allocationId);
+    if (!option) return;
+
+    activeAllocation = { rowIndex, option };
+    plannerResourceColumn?.querySelectorAll(".add-allocation").forEach((item, index) => {
+      item.classList.toggle("active", index === rowIndex);
+    });
+
+    closeAllocationMenu({ keepAllocation: true });
+  });
+}
+
 function buildPlanner() {
   if (!plannerWeekHeader || !plannerResourceColumn || !plannerCalendarGrid) return;
 
@@ -125,6 +229,7 @@ function buildPlanner() {
   resourcePlanner?.style.setProperty("--planner-days", visibleDayCount);
   resourcePlanner?.style.setProperty("--planner-rows", plannerRows.length);
   resourcePlanner?.setAttribute("data-weeks", String(visibleWeeks));
+  activeAllocation = null;
 
   weekLabels.slice(0, visibleWeeks).forEach((week) => {
     const weekGroup = document.createElement("div");
@@ -164,6 +269,42 @@ function buildPlanner() {
 
 buildPlanner();
 
+plannerResourceColumn?.addEventListener("click", (event) => {
+  const button = event.target.closest(".add-allocation");
+  if (!button) return;
+
+  const buttons = Array.from(plannerResourceColumn.querySelectorAll(".add-allocation"));
+  const rowIndex = buttons.indexOf(button);
+  if (rowIndex < 0) return;
+
+  const isTogglingSame = activeAllocation?.rowIndex === rowIndex && allocationMenu === null;
+  if (isTogglingSame) {
+    activeAllocation = null;
+    button.classList.remove("active");
+    return;
+  }
+
+  openAllocationMenu(button, rowIndex);
+});
+
+plannerCalendarGrid?.addEventListener("click", (event) => {
+  if (!activeAllocation) return;
+  const cell = event.target.closest(".plan-cell");
+  if (!cell) return;
+
+  const visibleDayCount = visibleWeeks * 7;
+  const cellIndex = Array.from(plannerCalendarGrid.querySelectorAll(".plan-cell")).indexOf(cell);
+  if (cellIndex < 0) return;
+
+  const rowIndex = Math.floor(cellIndex / visibleDayCount);
+  if (rowIndex !== activeAllocation.rowIndex) return;
+
+  const option = activeAllocation.option;
+  cell.className = `plan-cell ${option.color}`;
+  cell.textContent = option.shortLabel;
+  closeAllocationMenu({ keepAllocation: false });
+});
+
 weekCountButtons.forEach((button) => {
   button.addEventListener("click", () => {
     visibleWeeks = Number(button.dataset.weekCount);
@@ -186,6 +327,7 @@ drawerCloseButtons.forEach((button) => {
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
+    closeAllocationMenu();
     attentionDrawer?.classList.remove("open");
     attentionDrawer?.setAttribute("aria-hidden", "true");
   }

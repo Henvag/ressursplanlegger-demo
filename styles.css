@@ -100,6 +100,87 @@ svg {
   stroke-linejoin: round;
 }
 
+.add-allocation.active {
+  background: #0e2f55;
+  color: #ffffff;
+}
+
+.allocation-popover {
+  position: fixed;
+  z-index: 60;
+  width: min(240px, calc(100vw - 24px));
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(14, 25, 39, 0.12);
+  background: #ffffff;
+  box-shadow: 0 18px 45px rgba(19, 34, 54, 0.12);
+}
+
+.allocation-popover::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
+  border-left: 1px solid rgba(14, 25, 39, 0.12);
+  border-top: 1px solid rgba(14, 25, 39, 0.12);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.allocation-popover-title {
+  padding: 2px 6px 8px;
+  color: #687382;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.allocation-popover-list {
+  display: grid;
+  gap: 2px;
+}
+
+.allocation-option {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  text-align: left;
+  color: #1b2430;
+  font-weight: 650;
+}
+
+.allocation-option:hover {
+  background: #f2f6fb;
+}
+
+.allocation-icon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: #f2f6fb;
+  color: #2b5c9d;
+}
+
+.allocation-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.allocation-label {
+  font-size: 13px;
+}
+
 .brand {
   display: inline-flex;
   align-items: baseline;
